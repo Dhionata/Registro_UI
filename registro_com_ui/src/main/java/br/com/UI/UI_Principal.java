@@ -86,7 +86,7 @@ public class UI_Principal extends JFrame implements ActionListener {
 	this.jLabel1.setHorizontalAlignment(0);
 	this.jLabel1.setText("Pessoas");
 	this.jLabel1.setToolTipText("");
-	final GroupLayout jPanel1Layout = new GroupLayout(UI_Principal.jPanel1);
+	GroupLayout jPanel1Layout = new GroupLayout(UI_Principal.jPanel1);
 	UI_Principal.jPanel1.setLayout(jPanel1Layout);
 	jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 		.addGroup(jPanel1Layout.createSequentialGroup().addGap(102, 102, 102)
@@ -121,8 +121,8 @@ public class UI_Principal extends JFrame implements ActionListener {
 			.addComponent(this.Botao_Salvar, -1, -1, 32767)));
 	this.jLabel6.setText("Nome");
 	this.jLabel8.setText("ID");
-	this.jLabel9.setText("Email");
-	this.jLabel10.setText("Cidade");
+	this.jLabel9.setText("Cidade");
+	this.jLabel10.setText("Email");
 	this.jLabel11.setText("Idade");
 	this.Texto_ID.setBackground(new Color(0, 204, 255));
 	this.Texto_ID.setFont(new Font("Arial", 1, 14));
@@ -221,66 +221,94 @@ public class UI_Principal extends JFrame implements ActionListener {
 
     private void Botao_EditarActionPerformed(final ActionEvent evt) {
 	System.out.println("Botão Atualizar Apertado");
-	new AtualizarBancoSQL(this.pegarPessoa(1));
-	this.Botao_PesquisarActionPerformed(evt);
+
+	if (!Texto_ID.getText().isBlank() && !Texto_Nome.getText().isBlank() && !Texto_Email.getText().isBlank()) {
+	    Pessoa p = new Pessoa();
+	    p.setId(Integer.parseInt(Texto_ID.getText()));
+	    p.setNome(Texto_Nome.getText());
+	    p.setCidade(Texto_Cidade.getText());
+	    p.setEmail(Texto_Email.getText());
+	    p.setIdade(Integer.parseInt(Texto_Idade.getText()));
+	    new AtualizarBancoSQL(p);
+	    this.Botao_PesquisarActionPerformed(evt);
+	} else {
+	    if (Texto_ID.getText().isBlank()) {
+		System.out.println("Você não pode atualizar alguém não salvo...");
+		JOptionPane.showMessageDialog(jPanel1, "Você não pode atualizar alguém não salvo...");
+	    }
+	    if (Texto_Nome.getText().isBlank()) {
+		System.out.println("Você não pode deixar uma pessoa sem nome...");
+		JOptionPane.showMessageDialog(jPanel1, "Você não pode deixar uma pessoa sem nome...");
+	    }
+	    if (Texto_Email.getText().isBlank()) {
+		System.out.println("Precisa de um e-mail...");
+		JOptionPane.showMessageDialog(jPanel1, "Precisamos do e-mail para contato, e ele deve ser único...");
+	    }
+	}
+
     }
 
     private void Botao_PesquisarActionPerformed(final ActionEvent evt) {
 	System.out.println("Botão Pesquisar Apertado");
-	Pessoa p = new Pessoa();
-	int i = 0;
-	do {
-	    try {
-		if (this.Texto_Nome.getText().isBlank()) {
-		    System.out.println("Seu burro, coloca alguma coisa no nome pra pesquisar...");
-		    this.Texto_Nome
-			    .setText(JOptionPane.showInputDialog(this.jLabel1, "Quer merda, coloca um nome jovem..."));
-		    i = 0;
-		} else {
-		    i = 1;
-		}
-	    } catch (Exception ex) {
-		System.out.println("Deu ruim na hora de buscar...");
-		JOptionPane.showMessageDialog(this.jLabel1, "Quer merda, coloca um nome jovem, tenta sair asism n...");
-		i = 0;
+	if (!Texto_Nome.getText().isBlank()) {
+	    Pessoa p = new Pessoa();
+	    p = BuscaBancoSQLite.BuscaNoBancoSQLite(this.Texto_Nome.getText());
+	    if (p.getNome() == null) {
+		JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Pessoa Não encontrada!");
+		this.limparTextos();
+	    } else {
+		this.Texto_ID.setText(Integer.toString(p.getId()));
+		this.Texto_Nome.setText(p.getNome());
+		this.Texto_Cidade.setText(p.getCidade());
+		this.Texto_Email.setText(p.getEmail());
+		this.Texto_Idade.setText(Integer.toString(p.getIdade()));
+		this.Botao_Excluir.setEnabled(true);
+		this.Botao_Editar.setEnabled(true);
 	    }
-	} while (i == 0);
-	p = BuscaBancoSQLite.BuscaNoBancoSQLite(this.Texto_Nome.getText());
-	if (p.getNome() == null) {
-	    JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Pessoa Não encontrada!");
-	    this.limparTextos();
 	} else {
-	    this.Texto_ID.setText(Integer.toString(p.getId()));
-	    this.Texto_Nome.setText(p.getNome());
-	    this.Texto_Cidade.setText(p.getCidade());
-	    this.Texto_Email.setText(p.getEmail());
-	    this.Texto_Idade.setText(Integer.toString(p.getIdade()));
-	    this.Botao_Excluir.setEnabled(true);
-	    this.Botao_Editar.setEnabled(true);
-	    JOptionPane.showMessageDialog(UI_Principal.jPanel1, "TARAAAAM!!!");
+	    JOptionPane.showMessageDialog(jPanel1, "Cara... vc tem que preencher o nome pra pesquisar...");
 	}
     }
 
     private void Botao_ExcluirActionPerformed(final ActionEvent evt) {
 	System.out.println("Botão Excluir Apertado");
-	new ExcluirDoBancoSQLite(this.pegarPessoa(1).getNome());
+	new ExcluirDoBancoSQLite(Texto_Nome.getText());
 	this.limparTextos();
     }
 
     private void Botao_SalvarActionPerformed(final ActionEvent evt) {
 	System.out.println("Botão Salvar Apertado");
-	new InserirPessoa(this.pegarPessoa(0));
-	this.limparTextos();
+	if (!Texto_Nome.getText().isBlank() && !Texto_Idade.getText().isBlank() && !Texto_Email.getText().isBlank()
+		&& !Texto_Cidade.getText().isBlank()) {
+	    Pessoa p = new Pessoa();
+	    p.setNome(Texto_Nome.getText());
+	    p.setCidade(Texto_Cidade.getText());
+	    p.setEmail(Texto_Email.getText());
+	    try {
+		p.setIdade(Integer.parseInt(Texto_Idade.getText()));
+		System.out.println("Setou idade..." + p.getIdade());
+	    } catch (Exception e) {
+		JOptionPane.showMessageDialog(jPanel1, "Cara...\ntem q ser um número\n--Erro--\n" + e.getMessage());
+		return;
+	    }
+	    System.out.println("Vai tentar inserir...");
+	    new InserirPessoa(p);
+	    this.limparTextos();
+	} else {
+	    JOptionPane.showMessageDialog(jPanel1, "Olha... vc tem que ter preencher tudo pra salvar...");
+	}
     }
 
     private void Texto_IDActionPerformed(final ActionEvent evt) {
-	if (this.Texto_ID.getText().isEmpty()) {
+	if (this.Texto_ID.getText().isBlank()) {
 	    this.limparTextos();
 	    this.Botao_Editar.setEnabled(false);
 	    this.Botao_Excluir.setEnabled(false);
+	    this.Botao_Salvar.setEnabled(true);
 	} else {
 	    this.Botao_Editar.setEnabled(true);
 	    this.Botao_Excluir.setEnabled(true);
+	    this.Botao_Salvar.setEnabled(false);
 	}
     }
 
@@ -294,7 +322,7 @@ public class UI_Principal extends JFrame implements ActionListener {
     }
 
     private void Texto_NomeActionPerformed(final ActionEvent evt) {
-	if (this.Texto_Nome.getText().isEmpty()) {
+	if (this.Texto_Nome.getText().isBlank()) {
 	    this.limparTextos();
 	}
     }
@@ -322,87 +350,37 @@ public class UI_Principal extends JFrame implements ActionListener {
 	EventQueue.invokeLater(() -> new UI_Principal().setVisible(true));
     }
 
-    public Pessoa pegarPessoa(final int cod) {
-	final Pessoa p = new Pessoa();
-	int i = 0;
-	System.out.println(this.Texto_Nome.getText());
-	if (this.Texto_Nome.getText().isBlank()) {
-	    System.out.println("entrou no nome como ''");
-	    do {
-		try {
-		    p.setNome(JOptionPane.showInputDialog(UI_Principal.jPanel1, "O nome é obrigatório!"));
-		    if (p.getNome().isBlank()) {
-			i = 0;
-		    } else {
-			i = 1;
-		    }
-		} catch (Exception e) {
-		    JOptionPane.showMessageDialog(UI_Principal.jPanel1, e.getMessage());
-		    i = 0;
-		}
-	    } while (i == 0);
-	} else {
-	    p.setNome(this.Texto_Nome.getText());
-	}
-	if (this.Texto_Idade.getText().isBlank()) {
-	    do {
-		try {
-		    p.setIdade(Integer.parseInt(JOptionPane.showInputDialog(UI_Principal.jPanel1,
-			    "Insira Um Valor Numérico para a idade!!!")));
-		    if (p.getIdade() == 0) {
-			i = 1;
-		    } else {
-			i = 0;
-		    }
-		} catch (NumberFormatException e2) {
-		    JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Isso é um número?\n\n" + e2.getMessage(),
-			    "Deu Ruim...", 0);
-		    i = 1;
-		}
-	    } while (i == 1);
-	} else {
-	    p.setIdade(Integer.parseInt(this.Texto_Idade.getText()));
-	}
-	if (this.Texto_Email.getText().isBlank()) {
-	    do {
-		try {
-		    p.setEmail(JOptionPane.showInputDialog(UI_Principal.jPanel1,
-			    "Informe seu Email\nO e-mail é obrigatório!"));
-		    if (p.getEmail().isBlank()) {
-			i = 1;
-		    } else {
-			i = 0;
-		    }
-		} catch (Exception ex) {
-		    JOptionPane.showMessageDialog(UI_Principal.jPanel1, ex.getMessage());
-		    i = 1;
-		}
-	    } while (i == 1);
-	} else {
-	    p.setEmail(this.Texto_Email.getText());
-	}
-	if (this.Texto_Cidade.getText().isBlank()) {
-	    do {
-		try {
-		    p.setCidade(JOptionPane.showInputDialog(this.jLabel1, "Informe sua cidade por favor..."));
-		    if (p.getCidade().isBlank()) {
-			i = 1;
-		    } else {
-			i = 0;
-		    }
-		} catch (Exception ex) {
-		    i = 1;
-		    JOptionPane.showMessageDialog(this.jLabel1, ex.getMessage());
-		}
-	    } while (i == 1);
-	} else {
-	    p.setCidade(this.Texto_Cidade.getText());
-	}
-	if (cod == 1) {
-	    p.setId(Integer.parseInt(this.Texto_ID.getText()));
-	}
-	return p;
-    }
+    /*
+     * public Pessoa pegarPessoa(final int cod) { final Pessoa p = new Pessoa(); int
+     * i = 0; System.out.println(this.Texto_Nome.getText()); if
+     * (this.Texto_Nome.getText().isBlank()) {
+     * System.out.println("entrou no nome como ''"); do { try {
+     * p.setNome(JOptionPane.showInputDialog(UI_Principal.jPanel1,
+     * "O nome é obrigatório!")); if (p.getNome().isBlank()) { i = 0; } else { i =
+     * 1; } } catch (Exception e) {
+     * JOptionPane.showMessageDialog(UI_Principal.jPanel1, e.getMessage()); i = 0; }
+     * } while (i == 0); } else { p.setNome(this.Texto_Nome.getText()); } if
+     * (this.Texto_Idade.getText().isBlank()) { do { try {
+     * p.setIdade(Integer.parseInt(JOptionPane.showInputDialog(UI_Principal.jPanel1,
+     * "Insira Um Valor Numérico para a idade!!!"))); if (p.getIdade() == 0) { i =
+     * 1; } else { i = 0; } } catch (NumberFormatException e2) {
+     * JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Isso é um número?\n\n" +
+     * e2.getMessage(), "Deu Ruim...", 0); i = 1; } } while (i == 1); } else {
+     * p.setIdade(Integer.parseInt(this.Texto_Idade.getText())); } if
+     * (this.Texto_Email.getText().isBlank()) { do { try {
+     * p.setEmail(JOptionPane.showInputDialog(UI_Principal.jPanel1,
+     * "Informe seu Email\nO e-mail é obrigatório!")); if (p.getEmail().isBlank()) {
+     * i = 1; } else { i = 0; } } catch (Exception ex) {
+     * JOptionPane.showMessageDialog(UI_Principal.jPanel1, ex.getMessage()); i = 1;
+     * } } while (i == 1); } else { p.setEmail(this.Texto_Email.getText()); } if
+     * (this.Texto_Cidade.getText().isBlank()) { do { try {
+     * p.setCidade(JOptionPane.showInputDialog(this.jLabel1,
+     * "Informe sua cidade por favor...")); if (p.getCidade().isBlank()) { i = 1; }
+     * else { i = 0; } } catch (Exception ex) { i = 1;
+     * JOptionPane.showMessageDialog(this.jLabel1, ex.getMessage()); } } while (i ==
+     * 1); } else { p.setCidade(this.Texto_Cidade.getText()); } if (cod == 1) {
+     * p.setId(Integer.parseInt(this.Texto_ID.getText())); } return p; }
+     */
 
     private void limparTextos() {
 	this.Botao_Editar.setEnabled(false);

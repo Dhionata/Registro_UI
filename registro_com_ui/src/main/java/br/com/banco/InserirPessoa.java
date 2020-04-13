@@ -26,16 +26,15 @@ public class InserirPessoa {
 	    preparedStatement.setInt(2, p.getIdade());
 	    preparedStatement.setString(3, p.getEmail());
 	    preparedStatement.setString(4, p.getCidade());
-	    final int resultado = preparedStatement.executeUpdate();
-	    if (resultado == 1) {
-		JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Pessoa inserida!");
-	    } else {
-		JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Pessoa Não inserida!");
+	    if (preparedStatement.executeUpdate() != 1) {
+		JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Pessoa Salva!");
 	    }
 	} catch (SQLException ex) {
-	    JOptionPane.showMessageDialog(UI_Principal.jPanel1, "\n--Erro--\n" + ex.getMessage());
+	    JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Pessoa Não inserida!\n--Erro--\n" + ex.getMessage());
+	    System.out.println("Pessoa não inserida\n--Erro--\n" + ex.getMessage());
 	    return;
 	} finally {
+
 	    if (preparedStatement != null) {
 		try {
 		    preparedStatement.close();

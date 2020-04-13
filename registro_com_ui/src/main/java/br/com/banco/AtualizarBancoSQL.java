@@ -30,7 +30,7 @@ public class AtualizarBancoSQL {
 		System.out.println("Atualizou...");
 		JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Pessoa Atualizada!");
 	    } else {
-		System.out.println("N\u00e3o atualizou...");
+		System.out.println("Não atualizou...");
 		JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Pessoa Não Atualizada!");
 	    }
 	} catch (SQLException e) {
