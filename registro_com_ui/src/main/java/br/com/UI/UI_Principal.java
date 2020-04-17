@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
@@ -220,82 +221,109 @@ public class UI_Principal extends JFrame implements ActionListener {
     }
 
     private void Botao_EditarActionPerformed(final ActionEvent evt) {
-	System.out.println("Botão Atualizar Apertado");
+	try {
+	    System.out.println("Botão Atualizar Apertado");
 
-	if (!Texto_ID.getText().isBlank() && !Texto_Nome.getText().isBlank() && !Texto_Email.getText().isBlank()) {
-	    Pessoa p = new Pessoa();
-	    p.setId(Integer.parseInt(Texto_ID.getText()));
-	    p.setNome(Texto_Nome.getText());
-	    p.setCidade(Texto_Cidade.getText());
-	    p.setEmail(Texto_Email.getText());
-	    p.setIdade(Integer.parseInt(Texto_Idade.getText()));
-	    new AtualizarBancoSQL(p);
-	    this.Botao_PesquisarActionPerformed(evt);
-	} else {
-	    if (Texto_ID.getText().isBlank()) {
-		System.out.println("Você não pode atualizar alguém não salvo...");
-		JOptionPane.showMessageDialog(jPanel1, "Você não pode atualizar alguém não salvo...");
+	    if (!Texto_ID.getText().isBlank() && !Texto_Nome.getText().isBlank() && !Texto_Email.getText().isBlank()) {
+		Pessoa p = new Pessoa();
+		p.setId(Integer.parseInt(Texto_ID.getText()));
+		p.setNome(Texto_Nome.getText());
+		p.setCidade(Texto_Cidade.getText());
+		p.setEmail(Texto_Email.getText());
+		p.setIdade(Integer.parseInt(Texto_Idade.getText()));
+		new AtualizarBancoSQL(p);
+		this.Botao_PesquisarActionPerformed(evt);
+	    } else {
+		if (Texto_ID.getText().isBlank()) {
+		    System.out.println("Você não pode atualizar alguém não salvo...");
+		    JOptionPane.showMessageDialog(jPanel1, "Você não pode atualizar alguém não salvo...");
+		}
+		if (Texto_Nome.getText().isBlank()) {
+		    System.out.println("Você não pode deixar uma pessoa sem nome...");
+		    JOptionPane.showMessageDialog(jPanel1, "Você não pode deixar uma pessoa sem nome...");
+		}
+		if (Texto_Email.getText().isBlank()) {
+		    System.out.println("Precisa de um e-mail...");
+		    JOptionPane.showMessageDialog(jPanel1,
+			    "Precisamos do e-mail para contato, e ele deve ser único...");
+		}
 	    }
-	    if (Texto_Nome.getText().isBlank()) {
-		System.out.println("Você não pode deixar uma pessoa sem nome...");
-		JOptionPane.showMessageDialog(jPanel1, "Você não pode deixar uma pessoa sem nome...");
-	    }
-	    if (Texto_Email.getText().isBlank()) {
-		System.out.println("Precisa de um e-mail...");
-		JOptionPane.showMessageDialog(jPanel1, "Precisamos do e-mail para contato, e ele deve ser único...");
-	    }
+	} catch (NumberFormatException e) {
+	    JOptionPane.showMessageDialog(jPanel1, "Então, deu algum problema com números\n--Erro--" + e.getMessage());
+	    e.printStackTrace();
+	} catch (HeadlessException e) {
+	    JOptionPane.showMessageDialog(jPanel1, "Cara.. ocorreu um problema\n--Erro--\n" + e.getMessage());
+	    e.printStackTrace();
 	}
 
     }
 
     private void Botao_PesquisarActionPerformed(final ActionEvent evt) {
-	System.out.println("Botão Pesquisar Apertado");
-	if (!Texto_Nome.getText().isBlank()) {
-	    Pessoa p = new Pessoa();
-	    p = BuscaBancoSQLite.BuscaNoBancoSQLite(this.Texto_Nome.getText());
-	    if (p.getNome() == null) {
-		JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Pessoa Não encontrada!");
-		this.limparTextos();
+	try {
+	    System.out.println("Botão Pesquisar Apertado");
+	    if (!Texto_Nome.getText().isBlank()) {
+		Pessoa p = new Pessoa();
+		p = BuscaBancoSQLite.BuscaNoBancoSQLite(this.Texto_Nome.getText());
+		if (p.getNome() == null) {
+		    JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Pessoa Não encontrada!");
+		    this.limparTextos();
+		} else {
+		    this.Texto_ID.setText(Integer.toString(p.getId()));
+		    this.Texto_Nome.setText(p.getNome());
+		    this.Texto_Cidade.setText(p.getCidade());
+		    this.Texto_Email.setText(p.getEmail());
+		    this.Texto_Idade.setText(Integer.toString(p.getIdade()));
+		    this.Botao_Excluir.setEnabled(true);
+		    this.Botao_Editar.setEnabled(true);
+		}
 	    } else {
-		this.Texto_ID.setText(Integer.toString(p.getId()));
-		this.Texto_Nome.setText(p.getNome());
-		this.Texto_Cidade.setText(p.getCidade());
-		this.Texto_Email.setText(p.getEmail());
-		this.Texto_Idade.setText(Integer.toString(p.getIdade()));
-		this.Botao_Excluir.setEnabled(true);
-		this.Botao_Editar.setEnabled(true);
+		JOptionPane.showMessageDialog(jPanel1, "Cara... vc tem que preencher o nome pra pesquisar...");
 	    }
-	} else {
-	    JOptionPane.showMessageDialog(jPanel1, "Cara... vc tem que preencher o nome pra pesquisar...");
+	} catch (HeadlessException e) {
+	    JOptionPane.showMessageDialog(jPanel1,
+		    "Problema no botão pesquisar, me reporte por favor...\n--Erro--\n" + e.getMessage());
+	    e.printStackTrace();
 	}
     }
 
     private void Botao_ExcluirActionPerformed(final ActionEvent evt) {
-	System.out.println("Botão Excluir Apertado");
-	new ExcluirDoBancoSQLite(Texto_Nome.getText());
-	this.limparTextos();
+	try {
+	    System.out.println("Botão Excluir Apertado");
+	    new ExcluirDoBancoSQLite(Texto_Nome.getText());
+	    this.limparTextos();
+	} catch (Exception e) {
+	    JOptionPane.showMessageDialog(jPanel1,
+		    "Então... o botão excluir tá com algum problema, me reporte.\n--Erro--\n" + e.getMessage());
+	    e.printStackTrace();
+	}
     }
 
     private void Botao_SalvarActionPerformed(final ActionEvent evt) {
-	System.out.println("Botão Salvar Apertado");
-	if (!Texto_Nome.getText().isBlank() && !Texto_Idade.getText().isBlank() && !Texto_Email.getText().isBlank()
-		&& !Texto_Cidade.getText().isBlank()) {
-	    Pessoa p = new Pessoa();
-	    p.setNome(Texto_Nome.getText());
-	    p.setCidade(Texto_Cidade.getText());
-	    p.setEmail(Texto_Email.getText());
-	    try {
-		p.setIdade(Integer.parseInt(Texto_Idade.getText()));
-		System.out.println("Setou idade..." + p.getIdade());
-	    } catch (Exception e) {
-		JOptionPane.showMessageDialog(jPanel1, "Cara...\ntem q ser um número\n--Erro--\n" + e.getMessage());
-		return;
+	try {
+	    System.out.println("Botão Salvar Apertado");
+	    if (!Texto_Nome.getText().isBlank() && !Texto_Idade.getText().isBlank() && !Texto_Email.getText().isBlank()
+		    && !Texto_Cidade.getText().isBlank()) {
+		Pessoa p = new Pessoa();
+		p.setNome(Texto_Nome.getText());
+		p.setCidade(Texto_Cidade.getText());
+		p.setEmail(Texto_Email.getText());
+		try {
+		    p.setIdade(Integer.parseInt(Texto_Idade.getText()));
+		    System.out.println("Setou idade..." + p.getIdade());
+		} catch (Exception e) {
+		    JOptionPane.showMessageDialog(jPanel1, "Cara...\ntem q ser um número\n--Erro--\n" + e.getMessage());
+		    return;
+		}
+		System.out.println("Vai tentar inserir...");
+		new InserirPessoa(p);
+		this.limparTextos();
+	    } else {
+		JOptionPane.showMessageDialog(jPanel1, "Olha... vc tem que ter preencher tudo pra salvar...");
 	    }
-	    System.out.println("Vai tentar inserir...");
-	    new InserirPessoa(p);
-	    this.limparTextos();
-	} else {
-	    JOptionPane.showMessageDialog(jPanel1, "Olha... vc tem que ter preencher tudo pra salvar...");
+	} catch (HeadlessException e) {
+	    JOptionPane.showMessageDialog(jPanel1,
+		    "Desculpe, Salvar não está funcionando... corretamente...\n--Erro--" + e.getMessage());
+	    e.printStackTrace();
 	}
     }
 

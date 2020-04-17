@@ -26,7 +26,7 @@ public class InserirPessoa {
 	    preparedStatement.setInt(2, p.getIdade());
 	    preparedStatement.setString(3, p.getEmail());
 	    preparedStatement.setString(4, p.getCidade());
-	    if (preparedStatement.executeUpdate() != 1) {
+	    if (preparedStatement.executeUpdate() != 0) {
 		JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Pessoa Salva!");
 	    }
 	} catch (SQLException ex) {
