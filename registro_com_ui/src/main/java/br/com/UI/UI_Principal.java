@@ -224,25 +224,26 @@ public class UI_Principal extends JFrame implements ActionListener {
 	try {
 	    System.out.println("Botão Atualizar Apertado");
 
-	    if (!Texto_ID.getText().isBlank() && !Texto_Nome.getText().isBlank() && !Texto_Email.getText().isBlank()) {
+	    if (!Texto_ID.getText().trim().isEmpty() && !Texto_Nome.getText().trim().isEmpty()
+		    && !Texto_Email.getText().trim().isEmpty()) {
 		Pessoa p = new Pessoa();
 		p.setId(Integer.parseInt(Texto_ID.getText()));
-		p.setNome(Texto_Nome.getText());
-		p.setCidade(Texto_Cidade.getText());
-		p.setEmail(Texto_Email.getText());
-		p.setIdade(Integer.parseInt(Texto_Idade.getText()));
+		p.setNome(Texto_Nome.getText().trim());
+		p.setCidade(Texto_Cidade.getText().trim());
+		p.setEmail(Texto_Email.getText().trim());
+		p.setIdade(Integer.parseInt(Texto_Idade.getText().trim()));
 		new AtualizarBancoSQL(p);
 		this.Botao_PesquisarActionPerformed(evt);
 	    } else {
-		if (Texto_ID.getText().isBlank()) {
+		if (Texto_ID.getText().trim().isEmpty()) {
 		    System.out.println("Você não pode atualizar alguém não salvo...");
 		    JOptionPane.showMessageDialog(jPanel1, "Você não pode atualizar alguém não salvo...");
 		}
-		if (Texto_Nome.getText().isBlank()) {
+		if (Texto_Nome.getText().trim().isEmpty()) {
 		    System.out.println("Você não pode deixar uma pessoa sem nome...");
 		    JOptionPane.showMessageDialog(jPanel1, "Você não pode deixar uma pessoa sem nome...");
 		}
-		if (Texto_Email.getText().isBlank()) {
+		if (Texto_Email.getText().trim().isEmpty()) {
 		    System.out.println("Precisa de um e-mail...");
 		    JOptionPane.showMessageDialog(jPanel1,
 			    "Precisamos do e-mail para contato, e ele deve ser único...");
@@ -261,17 +262,17 @@ public class UI_Principal extends JFrame implements ActionListener {
     private void Botao_PesquisarActionPerformed(final ActionEvent evt) {
 	try {
 	    System.out.println("Botão Pesquisar Apertado");
-	    if (!Texto_Nome.getText().isBlank()) {
+	    if (!Texto_Nome.getText().trim().isEmpty()) {
 		Pessoa p = new Pessoa();
-		p = BuscaBancoSQLite.BuscaNoBancoSQLite(this.Texto_Nome.getText());
+		p = BuscaBancoSQLite.BuscaNoBancoSQLite(this.Texto_Nome.getText().trim());
 		if (p.getNome() == null) {
 		    JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Pessoa Não encontrada!");
 		    this.limparTextos();
 		} else {
 		    this.Texto_ID.setText(Integer.toString(p.getId()));
-		    this.Texto_Nome.setText(p.getNome());
-		    this.Texto_Cidade.setText(p.getCidade());
-		    this.Texto_Email.setText(p.getEmail());
+		    this.Texto_Nome.setText(p.getNome().trim());
+		    this.Texto_Cidade.setText(p.getCidade().trim());
+		    this.Texto_Email.setText(p.getEmail().trim());
 		    this.Texto_Idade.setText(Integer.toString(p.getIdade()));
 		    this.Botao_Excluir.setEnabled(true);
 		    this.Botao_Editar.setEnabled(true);
@@ -301,14 +302,14 @@ public class UI_Principal extends JFrame implements ActionListener {
     private void Botao_SalvarActionPerformed(final ActionEvent evt) {
 	try {
 	    System.out.println("Botão Salvar Apertado");
-	    if (!Texto_Nome.getText().isBlank() && !Texto_Idade.getText().isBlank() && !Texto_Email.getText().isBlank()
-		    && !Texto_Cidade.getText().isBlank()) {
+	    if (!Texto_Nome.getText().trim().isEmpty() && !Texto_Idade.getText().trim().isEmpty()
+		    && !Texto_Email.getText().trim().isEmpty() && !Texto_Cidade.getText().trim().isEmpty()) {
 		Pessoa p = new Pessoa();
-		p.setNome(Texto_Nome.getText());
-		p.setCidade(Texto_Cidade.getText());
-		p.setEmail(Texto_Email.getText());
+		p.setNome(Texto_Nome.getText().trim());
+		p.setCidade(Texto_Cidade.getText().trim());
+		p.setEmail(Texto_Email.getText().trim());
 		try {
-		    p.setIdade(Integer.parseInt(Texto_Idade.getText()));
+		    p.setIdade(Integer.parseInt(Texto_Idade.getText().trim()));
 		    System.out.println("Setou idade..." + p.getIdade());
 		} catch (Exception e) {
 		    JOptionPane.showMessageDialog(jPanel1, "Cara...\ntem q ser um número\n--Erro--\n" + e.getMessage());
@@ -328,7 +329,7 @@ public class UI_Principal extends JFrame implements ActionListener {
     }
 
     private void Texto_IDActionPerformed(final ActionEvent evt) {
-	if (this.Texto_ID.getText().isBlank()) {
+	if (this.Texto_ID.getText().trim().isEmpty()) {
 	    this.limparTextos();
 	    this.Botao_Editar.setEnabled(false);
 	    this.Botao_Excluir.setEnabled(false);
@@ -350,7 +351,7 @@ public class UI_Principal extends JFrame implements ActionListener {
     }
 
     private void Texto_NomeActionPerformed(final ActionEvent evt) {
-	if (this.Texto_Nome.getText().isBlank()) {
+	if (this.Texto_Nome.getText().trim().isEmpty()) {
 	    this.limparTextos();
 	}
     }
