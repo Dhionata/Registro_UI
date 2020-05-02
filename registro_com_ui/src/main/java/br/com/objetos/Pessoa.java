@@ -10,57 +10,48 @@ public class Pessoa {
     public Pessoa() {
     }
 
-    public Pessoa(int i, String n, String e, String c, int ida) {
-	setId(i);
-	setNome(n);
-	setEmail(e);
-	setCidade(c);
-	setIdade(ida);
-    }
-
-
     public int getId() {
-	return this.id;
+        return this.id;
     }
 
     public void setId(int id) {
-	this.id = id;
+        this.id = id;
     }
 
     public String getNome() {
-	return this.nome;
+        return this.nome;
     }
 
     public void setNome(String nome) {
-	this.nome = nome;
+        this.nome = nome;
     }
 
     public int getIdade() {
-	return this.idade;
+        return this.idade;
     }
 
     public void setIdade(int idade) {
-	this.idade = idade;
+        this.idade = idade;
     }
 
     public String getEmail() {
-	return this.email;
+        return this.email;
     }
 
     public void setEmail(String email) {
-	this.email = email;
+        this.email = email;
     }
 
     public String getCidade() {
-	return this.cidade;
+        return this.cidade;
     }
 
     public void setCidade(String cidade) {
-	this.cidade = cidade;
+        this.cidade = cidade;
     }
 
     public void imprimir() {
-	System.out.println("-- Pessoa --\nID: " + getId() + "\nNome: " + getNome() + "\nIdade: " + getIdade()
-		+ "\nEmail: " + getEmail() + "\nCidade: " + getCidade());
+        System.out.println("-- Pessoa --\nID: " + getId() + "\nNome: " + getNome() + "\nIdade: " + getIdade()
+                + "\nEmail: " + getEmail() + "\nCidade: " + getCidade());
     }
 }

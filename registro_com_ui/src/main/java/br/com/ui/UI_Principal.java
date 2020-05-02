@@ -1,4 +1,4 @@
-package br.com.UI;
+package br.com.ui;
 
 import br.com.banco.*;
 import br.com.objetos.*;
@@ -12,6 +12,7 @@ import java.util.logging.*;
 
 public class UI_Principal extends JFrame implements ActionListener {
     private static final long serialVersionUID = 1L;
+    public static JPanel jPanel1;
     private JButton Botao_Editar;
     private JButton Botao_Excluir;
     private JButton Botao_Pesquisar;
@@ -21,7 +22,6 @@ public class UI_Principal extends JFrame implements ActionListener {
     private JTextField Texto_ID;
     private JTextField Texto_Idade;
     private JTextField Texto_Nome;
-    public static JPanel jPanel1;
 
     public UI_Principal() {
         this.initComponents();
