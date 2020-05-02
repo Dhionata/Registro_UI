@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="73603050-1536-4211-ba7c-5274661a2327" name="Default Changelist" comment="" />
+    <list default="true" id="73603050-1536-4211-ba7c-5274661a2327" name="Default Changelist" comment="Transportado o projeto para o Intelijj e modificado parâmetros desnecessários e criação das telas só na inicialização da UI e não como propriedade.">
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_13_rc_2.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SQLite.db" beforeDir="false" afterPath="$PROJECT_DIR$/SQLite.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/registro_com_ui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/registro_com_ui.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/UI/UI_Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/UI/UI_Principal.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="KotlinCodeInsightWorkspaceSettings">
     <option name="addUnambiguousImportsOnTheFly" value="true" />
@@ -13,20 +29,23 @@
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
         <option name="vmOptionsForImporter" value="-Xmx768m" />
       </MavenImportingSettings>
     </option>
   </component>
   <component name="ProjectId" id="1ZH6lZk8ere3znkgO5MHb5ao9P3" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
   </component>
   <component name="RunManager">
@@ -67,6 +86,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
+    <MESSAGE value="Transportado o projeto para o Intelijj e modificado parâmetros desnecessários e criação das telas só na inicialização da UI e não como propriedade." />
+    <option name="LAST_COMMIT_MESSAGE" value="Transportado o projeto para o Intelijj e modificado parâmetros desnecessários e criação das telas só na inicialização da UI e não como propriedade." />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -76,22 +97,26 @@
       <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state x="399" y="295" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.984@0.0.1280.984" timestamp="1584484785257" />
-    <state width="1237" height="325" key="GridCell.Tab.0.bottom" timestamp="1584487640099">
+    <state x="267" y="56" key="CommitChangelistDialog2" timestamp="1588436339451">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state width="1237" height="325" key="GridCell.Tab.0.bottom/0.0.1280.984@0.0.1280.984" timestamp="1584487640099" />
-    <state width="1237" height="325" key="GridCell.Tab.0.center" timestamp="1584487640099">
+    <state x="267" y="56" key="CommitChangelistDialog2/0.0.1280.984@0.0.1280.984" timestamp="1588436339451" />
+    <state width="1237" height="255" key="GridCell.Tab.0.bottom" timestamp="1588436339596">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state width="1237" height="325" key="GridCell.Tab.0.center/0.0.1280.984@0.0.1280.984" timestamp="1584487640099" />
-    <state width="1237" height="325" key="GridCell.Tab.0.left" timestamp="1584487640098">
+    <state width="1237" height="255" key="GridCell.Tab.0.bottom/0.0.1280.984@0.0.1280.984" timestamp="1588436339596" />
+    <state width="1237" height="255" key="GridCell.Tab.0.center" timestamp="1588436339595">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state width="1237" height="325" key="GridCell.Tab.0.left/0.0.1280.984@0.0.1280.984" timestamp="1584487640098" />
-    <state width="1237" height="325" key="GridCell.Tab.0.right" timestamp="1584487640099">
+    <state width="1237" height="255" key="GridCell.Tab.0.center/0.0.1280.984@0.0.1280.984" timestamp="1588436339595" />
+    <state width="1237" height="255" key="GridCell.Tab.0.left" timestamp="1588436339595">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state width="1237" height="325" key="GridCell.Tab.0.right/0.0.1280.984@0.0.1280.984" timestamp="1584487640099" />
+    <state width="1237" height="255" key="GridCell.Tab.0.left/0.0.1280.984@0.0.1280.984" timestamp="1588436339595" />
+    <state width="1237" height="255" key="GridCell.Tab.0.right" timestamp="1588436339595">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state width="1237" height="255" key="GridCell.Tab.0.right/0.0.1280.984@0.0.1280.984" timestamp="1588436339595" />
     <state width="1237" height="325" key="GridCell.Tab.1.bottom" timestamp="1584487640099">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
@@ -108,6 +133,14 @@
       <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state width="1237" height="325" key="GridCell.Tab.1.right/0.0.1280.984@0.0.1280.984" timestamp="1584487640099" />
+    <state x="120" y="66" key="SettingsEditor" timestamp="1588435456177">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="120" y="66" key="SettingsEditor/0.0.1280.984@0.0.1280.984" timestamp="1588435456177" />
+    <state x="127" y="204" key="caller.chooser.dialog" timestamp="1588435619149">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="127" y="204" key="caller.chooser.dialog/0.0.1280.984@0.0.1280.984" timestamp="1588435619149" />
     <state x="22" y="112" key="new project wizard" timestamp="1585181922190">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
