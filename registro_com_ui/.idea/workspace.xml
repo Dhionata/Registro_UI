@@ -1,23 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="registro_com_ui:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="73603050-1536-4211-ba7c-5274661a2327" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_annotations_13_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="73603050-1536-4211-ba7c-5274661a2327" name="Default Changelist" comment="2.7.3 Adicionado verificação de exclusão">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SQLite.db" beforeDir="false" afterPath="$PROJECT_DIR$/SQLite.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/registro_com_ui.iml" beforeDir="false" afterPath="$PROJECT_DIR$/registro_com_ui.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/UI/Testes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/UI/UI_Principal.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ui/UI_Principal.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/UI/UI_Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ui/UI_Principal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/banco/AtualizarBancoSQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/banco/AtualizarBancoSQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/banco/BuscaBancoSQLite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/banco/BuscaBancoSQLite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/banco/ConexaoSQLite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/banco/ConexaoSQLite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/banco/CriarTabela.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/banco/CriarTabela.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/banco/ExcluirDoBancoSQLite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/banco/ExcluirDoBancoSQLite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/banco/InserirPessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/banco/InserirPessoa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/objetos/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/objetos/Pessoa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/com/ui/UI_Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/com/ui/UI_Principal.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,12 +59,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="last_opened_file_path" value="$USER_HOME$/OneDrive/Programacao/Intellij/URIOline" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
   </component>
   <component name="RunManager" selected="Application.UI_Principal">
     <configuration name="Testes" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -105,16 +118,46 @@
       <option name="project" value="LOCAL" />
       <updated>1588436371509</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="2.7 Corrigido código redundante e desnecessários e reformatação do código">
+      <created>1588437569054</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1588437569054</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="UpdateCopyrightCheckinHandler">
     <option name="UPDATE_COPYRIGHT" value="true" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="Transportado o projeto para o Intelijj e modificado parâmetros desnecessários e criação das telas só na inicialização da UI e não como propriedade." />
-    <option name="LAST_COMMIT_MESSAGE" value="Transportado o projeto para o Intelijj e modificado parâmetros desnecessários e criação das telas só na inicialização da UI e não como propriedade." />
+    <MESSAGE value="2.7 Corrigido código redundante e desnecessários e reformatação do código" />
+    <option name="LAST_COMMIT_MESSAGE" value="2.7 Corrigido código redundante e desnecessários e reformatação do código" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -124,38 +167,42 @@
       <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state x="399" y="295" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.984@0.0.1280.984" timestamp="1584484785257" />
+    <state x="370" y="282" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1588469016450">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="370" y="282" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1280.984@0.0.1280.984" timestamp="1588469016450" />
     <state x="398" y="351" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1588436874634">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state x="398" y="351" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1280.984@0.0.1280.984" timestamp="1588436874634" />
-    <state x="0" y="56" key="CommitChangelistDialog2" timestamp="1588436366553">
+    <state x="163" y="20" key="CommitChangelistDialog2" timestamp="1590970897781">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="0" y="56" key="CommitChangelistDialog2/0.0.1280.984@0.0.1280.984" timestamp="1588436366553" />
+    <state x="163" y="20" key="CommitChangelistDialog2/0.0.1280.984@0.0.1280.984" timestamp="1590970897781" />
     <state x="92" y="92" width="1096" height="800" key="DiffContextDialog" timestamp="1588437477625">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state x="92" y="92" width="1096" height="800" key="DiffContextDialog/0.0.1280.984@0.0.1280.984" timestamp="1588437477625" />
-    <state x="420" y="233" key="FileChooserDialogImpl" timestamp="1588436532143">
+    <state x="420" y="233" key="FileChooserDialogImpl" timestamp="1588470145201">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="420" y="233" key="FileChooserDialogImpl/0.0.1280.984@0.0.1280.984" timestamp="1588436532143" />
-    <state width="1237" height="255" key="GridCell.Tab.0.bottom" timestamp="1588437248410">
+    <state x="420" y="233" key="FileChooserDialogImpl/0.0.1280.984@0.0.1280.984" timestamp="1588470145201" />
+    <state width="1237" height="255" key="GridCell.Tab.0.bottom" timestamp="1590970803072">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state width="1237" height="255" key="GridCell.Tab.0.bottom/0.0.1280.984@0.0.1280.984" timestamp="1588437248410" />
-    <state width="1237" height="255" key="GridCell.Tab.0.center" timestamp="1588437248410">
+    <state width="1237" height="255" key="GridCell.Tab.0.bottom/0.0.1280.984@0.0.1280.984" timestamp="1590970803072" />
+    <state width="1237" height="255" key="GridCell.Tab.0.center" timestamp="1590970803072">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state width="1237" height="255" key="GridCell.Tab.0.center/0.0.1280.984@0.0.1280.984" timestamp="1588437248410" />
-    <state width="1237" height="255" key="GridCell.Tab.0.left" timestamp="1588437248409">
+    <state width="1237" height="255" key="GridCell.Tab.0.center/0.0.1280.984@0.0.1280.984" timestamp="1590970803072" />
+    <state width="1237" height="255" key="GridCell.Tab.0.left" timestamp="1590970803071">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state width="1237" height="255" key="GridCell.Tab.0.left/0.0.1280.984@0.0.1280.984" timestamp="1588437248409" />
-    <state width="1237" height="255" key="GridCell.Tab.0.right" timestamp="1588437248410">
+    <state width="1237" height="255" key="GridCell.Tab.0.left/0.0.1280.984@0.0.1280.984" timestamp="1590970803071" />
+    <state width="1237" height="255" key="GridCell.Tab.0.right" timestamp="1590970803072">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state width="1237" height="255" key="GridCell.Tab.0.right/0.0.1280.984@0.0.1280.984" timestamp="1588437248410" />
+    <state width="1237" height="255" key="GridCell.Tab.0.right/0.0.1280.984@0.0.1280.984" timestamp="1590970803072" />
     <state width="1237" height="325" key="GridCell.Tab.1.bottom" timestamp="1584487640099">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
@@ -172,14 +219,14 @@
       <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state width="1237" height="325" key="GridCell.Tab.1.right/0.0.1280.984@0.0.1280.984" timestamp="1584487640099" />
-    <state x="120" y="66" key="SettingsEditor" timestamp="1588435456177">
+    <state x="120" y="66" key="SettingsEditor" timestamp="1588470088584">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="120" y="66" key="SettingsEditor/0.0.1280.984@0.0.1280.984" timestamp="1588435456177" />
-    <state x="232" y="225" key="Vcs.Push.Dialog.v2" timestamp="1588436446760">
+    <state x="120" y="66" key="SettingsEditor/0.0.1280.984@0.0.1280.984" timestamp="1588470088584" />
+    <state x="232" y="225" key="Vcs.Push.Dialog.v2" timestamp="1588437573369">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
-    <state x="232" y="225" key="Vcs.Push.Dialog.v2/0.0.1280.984@0.0.1280.984" timestamp="1588436446760" />
+    <state x="232" y="225" key="Vcs.Push.Dialog.v2/0.0.1280.984@0.0.1280.984" timestamp="1588437573369" />
     <state x="127" y="204" key="caller.chooser.dialog" timestamp="1588435619149">
       <screen x="0" y="0" width="1280" height="984" />
     </state>
@@ -188,5 +235,9 @@
       <screen x="0" y="0" width="1280" height="984" />
     </state>
     <state x="22" y="112" key="new project wizard/0.0.1280.984@0.0.1280.984" timestamp="1585181922190" />
+    <state x="296" y="226" key="run.anything.popup" timestamp="1590970040980">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="296" y="226" key="run.anything.popup/0.0.1280.984@0.0.1280.984" timestamp="1590970040980" />
   </component>
 </project>

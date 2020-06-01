@@ -282,8 +282,14 @@ public class UI_Principal extends JFrame implements ActionListener {
     private void Botao_ExcluirActionPerformed() {
         try {
             System.out.println("Botão Excluir Apertado");
-            new ExcluirDoBancoSQLite(Texto_Nome.getText());
-            this.limparTextos();
+            int del = JOptionPane.showConfirmDialog(jPanel1, "Você tem certeza que quer excluir?", "Deletar", JOptionPane.YES_NO_OPTION);
+            if (del == 0) {
+                new ExcluirDoBancoSQLite(Texto_Nome.getText());
+                this.limparTextos();
+                System.out.println("Confirmado e efetuado a exclusão");
+            } else {
+                System.out.println("Exclusão não efetuada, botão Cancelar apertado");
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(jPanel1,
                     "Então... o botão excluir tá com algum problema, me reporte.\n--Erro--\n" + e.getMessage());
