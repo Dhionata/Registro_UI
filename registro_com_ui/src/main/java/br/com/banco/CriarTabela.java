@@ -22,7 +22,7 @@ public class CriarTabela {
 			stmt.execute(sql);
 			System.out.println("Tabela Criada!");
 		} catch (SQLException ex) {
-			JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Erro ao conectar\n--Erro--\n" + ex.getMessage());
+			JOptionPane.showMessageDialog(Ui.jPanel1, "Erro ao conectar\n--Erro--\n" + ex.getMessage());
 		} finally {
 			if (conectou) {
 				this.conexaoSQLite.desconectar();

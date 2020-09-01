@@ -19,18 +19,18 @@ public class ExcluirDoBancoSQLite {
             final int resultado = this.preparedStatement.executeUpdate();
             System.out.println("Resultado feito!");
             if (resultado == 1) {
-                JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Pessoa Deletada!");
+                JOptionPane.showMessageDialog(Ui.jPanel1, "Pessoa Deletada!");
             } else {
-                JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Pessoa Não Deletada!");
+                JOptionPane.showMessageDialog(Ui.jPanel1, "Pessoa Não Deletada!");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Erro ao Excluir!\n--Erro--\n" + e.getMessage());
+            JOptionPane.showMessageDialog(Ui.jPanel1, "Erro ao Excluir!\n--Erro--\n" + e.getMessage());
             if (this.preparedStatement != null) {
                 try {
                     this.preparedStatement.close();
                     this.conexaoSQLite.desconectar();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(UI_Principal.jPanel1,
+                    JOptionPane.showMessageDialog(Ui.jPanel1,
                             "Erro ao fechar o PreparedStatement\n--Erro--\n" + ex.getMessage());
                 }
             }
@@ -40,7 +40,7 @@ public class ExcluirDoBancoSQLite {
                     this.preparedStatement.close();
                     this.conexaoSQLite.desconectar();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(UI_Principal.jPanel1,
+                    JOptionPane.showMessageDialog(Ui.jPanel1,
                             "Erro ao fechar o PreparedStatement\n--Erro--\n" + ex.getMessage());
                 }
             }
