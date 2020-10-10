@@ -90,15 +90,7 @@ public class BuscaBancoSQLite {
                         "Erro ao fechar Busca por ID\n\n" + e2.getMessage());
             }
             return i;
-        } /*finally {
-            try {
-                pstmt.close();
-                ConexaoSQLite.desconectar();
-            } catch (SQLException e2) {
-                JOptionPane.showMessageDialog(Ui.getjPanel1(),
-                        "Erro ao fechar Busca por ID\n\n" + e2.getMessage());
-            }
-        }*/
+        }
         return i;
     }
 }
