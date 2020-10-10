@@ -22,7 +22,7 @@ public class UI_Principal extends JFrame implements ActionListener {
     private JTextField Texto_ID;
     private JTextField Texto_Idade;
     private JTextField Texto_Nome;
-
+ 
     public UI_Principal() {
         this.initComponents();
         this.setLocationRelativeTo(null);
