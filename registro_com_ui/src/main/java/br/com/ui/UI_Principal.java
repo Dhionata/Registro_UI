@@ -1,4 +1,4 @@
-package br.com.ui;
+
 
 import br.com.banco.*;
 import br.com.objetos.*;
@@ -33,7 +33,7 @@ public class UI_Principal extends JFrame implements ActionListener {
         this.Botao_Pesquisar.setEnabled(new File("SQLite.db").exists());
     }
 
-    public static void main(final String[] args) {
+    public static void main(String[] args) {
         try {
             UIManager.LookAndFeelInfo[] installedLookAndFeels;
             for (int length = (installedLookAndFeels = UIManager
