@@ -56,11 +56,13 @@ public class Ui extends JFrame implements ActionListener {
 
     public static void main(final String[] args) {
 	try {
+	    JOptionPane.showMessageDialog(jPanel1, "UIManager vai ser iniciado.");
 	    UIManager.LookAndFeelInfo[] installedLookAndFeels;
 	    for (int length = (installedLookAndFeels = UIManager
 		    .getInstalledLookAndFeels()).length, i = 0; i < length; ++i) {
-		final UIManager.LookAndFeelInfo info = installedLookAndFeels[i];
+		UIManager.LookAndFeelInfo info = installedLookAndFeels[i];
 		if ("Windows".equals(info.getName())) {
+		    JOptionPane.showMessageDialog(jPanel1, "entrou no if\n nome da classe");
 		    UIManager.setLookAndFeel(info.getClassName());
 		    break;
 		}
@@ -68,7 +70,9 @@ public class Ui extends JFrame implements ActionListener {
 	} catch (ClassNotFoundException | UnsupportedLookAndFeelException | IllegalAccessException
 		| InstantiationException ex) {
 	    Logger.getLogger(Ui.class.getName()).log(Level.SEVERE, null, ex);
+	    JOptionPane.showMessageDialog(jPanel1, "Deu ruim na classe");
 	}
+	JOptionPane.showMessageDialog(jPanel1, "Passou por tudo, vai abrir ;D");
 	EventQueue.invokeLater(() -> new Ui().setVisible(true));
     }
 
@@ -203,9 +207,9 @@ public class Ui extends JFrame implements ActionListener {
 	layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 		.addComponent(Ui.jPanel1, GroupLayout.Alignment.TRAILING, -1, -1, 32767)
 		.addGroup(layout.createSequentialGroup().addGap(0, 0, 0).addComponent(jPanel6, -2, -1, -2)));
-	layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-		.addGroup(layout.createSequentialGroup().addComponent(Ui.jPanel1, -2, -1, -2).addGap(0, 0, 0)
-			.addComponent(jPanel6, -1, -1, 32767)));
+	layout.setVerticalGroup(
+		layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup()
+			.addComponent(Ui.jPanel1, -2, -1, -2).addGap(0, 0, 0).addComponent(jPanel6, -1, -1, 32767)));
 	this.pack();
     }
 
