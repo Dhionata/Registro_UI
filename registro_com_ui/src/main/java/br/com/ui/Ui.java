@@ -26,7 +26,6 @@ import javax.swing.WindowConstants;
 import javax.swing.border.LineBorder;
 
 import br.com.banco.AtualizarBancoSQL;
-import br.com.banco.BuscaBancoSQLite;
 import br.com.banco.ExcluirDoBancoSQLite;
 import br.com.banco.InserirPessoa;
 import br.com.objetos.Pessoa;
@@ -45,14 +44,14 @@ public class Ui extends JFrame implements ActionListener {
     private JTextField Texto_Idade;
     private JTextField Texto_Nome;
 
-    public Ui() {
-        this.initComponents();
-        this.setLocationRelativeTo(null);
-        this.getTexto_ID().setEditable(false);
-        this.getBotao_Editar().setEnabled(false);
-        this.getBotao_Excluir().setEnabled(false);
+    private Ui() {
+        initComponents();
+        setLocationRelativeTo(null);
+        getTexto_ID().setEditable(false);
+        getBotao_Editar().setEnabled(false);
+        getBotao_Excluir().setEnabled(false);
 
-        this.getBotao_Pesquisar().setEnabled(new File("SQLite.db").exists());
+        Botao_Pesquisar.setEnabled(new File("SQLite.db").exists());
     }
 
     public static void main(final String[] args) {
@@ -74,7 +73,7 @@ public class Ui extends JFrame implements ActionListener {
             JOptionPane.showMessageDialog(getjPanel1(), "Deu ruim na classe");
         }
         //JOptionPane.showMessageDialog(getjPanel1(), "Passou por tudo, vai abrir ;D");
-        EventQueue.invokeLater(() -> new Ui().setVisible(true));
+        EventQueue.invokeLater(() -> createUi().setVisible(true));
     }
 
     public static JPanel getjPanel1() {
@@ -83,6 +82,10 @@ public class Ui extends JFrame implements ActionListener {
 
     public static void setjPanel1(JPanel jPanel1) {
         Ui.jPanel1 = jPanel1;
+    }
+
+    public static Ui createUi() {
+        return new Ui();
     }
 
     // parte 'gráfica'
