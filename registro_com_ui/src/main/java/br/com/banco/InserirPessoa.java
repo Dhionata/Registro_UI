@@ -25,10 +25,10 @@ public class InserirPessoa {
             preparedStatement.setString(3, p.getEmail());
             preparedStatement.setString(4, p.getCidade());
             if (preparedStatement.executeUpdate() != 0) {
-                JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Pessoa Salva!");
+                JOptionPane.showMessageDialog(Ui.jPanel1, "Pessoa Salva!");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Pessoa Não inserida!\n--Erro--\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(Ui.jPanel1, "Pessoa Não inserida!\n--Erro--\n" + ex.getMessage());
             System.out.println("Pessoa não inserida\n--Erro--\n" + ex.getMessage());
         } finally {
 
@@ -36,7 +36,7 @@ public class InserirPessoa {
                 try {
                     preparedStatement.close();
                 } catch (SQLException ex2) {
-                    JOptionPane.showMessageDialog(UI_Principal.jPanel1,
+                    JOptionPane.showMessageDialog(Ui.jPanel1,
                             "Erro ao fechar o PreparedStatement\n--Erro--\n" + ex2.getMessage());
                 }
             }

@@ -81,7 +81,7 @@
       </method>
     </configuration>
     <configuration name="UI_Principal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="br.com.ui.UI_Principal" />
+      <option name="MAIN_CLASS_NAME" value="br.com.ui.Ui" />
       <module name="registro_com_ui" />
       <extension name="coverage">
         <pattern>

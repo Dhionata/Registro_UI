@@ -40,7 +40,7 @@ public class BuscaBancoSQLite {
                 System.out.println("E-mail: " + p.getEmail());
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(UI_Principal.jPanel1,
+            JOptionPane.showMessageDialog(Ui.jPanel1,
                     "Erro na QUERY com PARAMETROS\n--Erro--\n" + e.getMessage());
             try {
                 BuscaBancoSQLite.resultSet.close();
@@ -49,7 +49,7 @@ public class BuscaBancoSQLite {
                 System.out.println("Fechou o preparedSteti... 1");
                 BuscaBancoSQLite.conexaoSQLite.desconectar();
             } catch (SQLException e2) {
-                JOptionPane.showMessageDialog(UI_Principal.jPanel1,
+                JOptionPane.showMessageDialog(Ui.jPanel1,
                         "Erro ao FECHAR a QUERY!\n--Erro--\n" + e2.getMessage());
             }
         } finally {
@@ -60,7 +60,7 @@ public class BuscaBancoSQLite {
                 System.out.println("Fechou o preparedSteti... 2");
                 BuscaBancoSQLite.conexaoSQLite.desconectar();
             } catch (SQLException e2) {
-                JOptionPane.showMessageDialog(UI_Principal.jPanel1,
+                JOptionPane.showMessageDialog(Ui.jPanel1,
                         "Erro ao FECHAR a QUERY!\n--Erro--\n" + e2.getMessage());
             }
         }
@@ -86,7 +86,7 @@ public class BuscaBancoSQLite {
                 BuscaBancoSQLite.Pstmt.close();
                 BuscaBancoSQLite.conexaoSQLite.desconectar();
             } catch (SQLException e2) {
-                JOptionPane.showMessageDialog(UI_Principal.jPanel1,
+                JOptionPane.showMessageDialog(Ui.jPanel1,
                         "Erro ao fechar Busca por ID\n\n" + e2.getMessage());
             }
             return i;
@@ -95,7 +95,7 @@ public class BuscaBancoSQLite {
                 BuscaBancoSQLite.Pstmt.close();
                 BuscaBancoSQLite.conexaoSQLite.desconectar();
             } catch (SQLException e2) {
-                JOptionPane.showMessageDialog(UI_Principal.jPanel1,
+                JOptionPane.showMessageDialog(Ui.jPanel1,
                         "Erro ao fechar Busca por ID\n\n" + e2.getMessage());
             }
         }

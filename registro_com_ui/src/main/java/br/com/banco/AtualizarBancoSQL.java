@@ -26,25 +26,25 @@ public class AtualizarBancoSQL {
             final int deuCerto = this.preparedStatement.executeUpdate();
             if (deuCerto == 1) {
                 System.out.println("Atualizou...");
-                JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Pessoa Atualizada!");
+                JOptionPane.showMessageDialog(Ui.jPanel1, "Pessoa Atualizada!");
             } else {
                 System.out.println("Não atualizou...");
-                JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Pessoa Não Atualizada!");
+                JOptionPane.showMessageDialog(Ui.jPanel1, "Pessoa Não Atualizada!");
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(UI_Principal.jPanel1, "Erro ao atualizar pessoa!" + e.getMessage());
+            JOptionPane.showMessageDialog(Ui.jPanel1, "Erro ao atualizar pessoa!" + e.getMessage());
             try {
                 this.preparedStatement.close();
                 this.conexaoSQLite.desconectar();
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(UI_Principal.jPanel1, ex.getMessage());
+                JOptionPane.showMessageDialog(Ui.jPanel1, ex.getMessage());
             }
         } finally {
             try {
                 this.preparedStatement.close();
                 this.conexaoSQLite.desconectar();
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(UI_Principal.jPanel1, ex.getMessage());
+                JOptionPane.showMessageDialog(Ui.jPanel1, ex.getMessage());
             }
         }
     }
