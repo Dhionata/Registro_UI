@@ -5,47 +5,53 @@ import br.com.ui.*;
 
 import javax.swing.*;
 import java.sql.*;
+import java.util.Objects;
 
-public class AtualizarBancoSQL {
-    final ConexaoSQLite conexaoSQLite;
+import static java.lang.System.*;
+
+public final class AtualizarBancoSQL {
+
     PreparedStatement preparedStatement;
 
-    public AtualizarBancoSQL(final Pessoa p) {
-        this.conexaoSQLite = new ConexaoSQLite();
-        System.out.println("AtuaizarBanco sendo usada...");
-        this.conexaoSQLite.conectar();
+    private AtualizarBancoSQL(final Pessoa p) {
+        ConexaoSQLite.conectar();
+        out.println("AtuaizarBanco sendo usada...");
         final String sql = "update Pessoa set nome = ?, 'e-mail'= ?,cidade = ?,idade = ? where id = ?;";
         try {
-            (this.preparedStatement = this.conexaoSQLite.criarPreparedStatement(sql)).setString(1, p.getNome());
-            this.preparedStatement.setString(2, p.getEmail());
-            this.preparedStatement.setString(3, p.getCidade());
-            this.preparedStatement.setInt(4, p.getIdade());
-            this.preparedStatement.setInt(5, p.getId());
-            System.out.println("-- Pessoa a ser atualizada --");
+            (preparedStatement = ConexaoSQLite.criarPreparedStatement(sql)).setString(1, p.getNome());
+            preparedStatement.setString(2, p.getEmail());
+            preparedStatement.setString(3, p.getCidade());
+            preparedStatement.setInt(4, p.getIdade());
+            preparedStatement.setInt(5, p.getId());
+            out.println("-- Pessoa a ser atualizada --");
             p.imprimir();
-            final int deuCerto = this.preparedStatement.executeUpdate();
+            int deuCerto = preparedStatement.executeUpdate();
             if (deuCerto == 1) {
-                System.out.println("Atualizou...");
-                JOptionPane.showMessageDialog(Ui.jPanel1, "Pessoa Atualizada!");
+                out.println("Atualizou...");
+                JOptionPane.showMessageDialog(Ui.getjPanel1(), "Pessoa Atualizada!");
             } else {
-                System.out.println("Não atualizou...");
-                JOptionPane.showMessageDialog(Ui.jPanel1, "Pessoa Não Atualizada!");
+                out.println("Não atualizou...");
+                JOptionPane.showMessageDialog(Ui.getjPanel1(), "Pessoa Não Atualizada!");
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(Ui.jPanel1, "Erro ao atualizar pessoa!" + e.getMessage());
+            JOptionPane.showMessageDialog(Ui.getjPanel1(), "Erro ao atualizar pessoa!" + e.getMessage());
             try {
-                this.preparedStatement.close();
-                this.conexaoSQLite.desconectar();
+                preparedStatement.close();
+                ConexaoSQLite.desconectar();
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(Ui.jPanel1, ex.getMessage());
+                JOptionPane.showMessageDialog(Ui.getjPanel1(), ex.getMessage());
             }
         } finally {
             try {
-                this.preparedStatement.close();
-                this.conexaoSQLite.desconectar();
+                preparedStatement.close();
+                ConexaoSQLite.desconectar();
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(Ui.jPanel1, ex.getMessage());
+                JOptionPane.showMessageDialog(Ui.getjPanel1(), ex.getMessage());
             }
         }
+    }
+
+    public static void createAtualizarBancoSQL(final Pessoa p) {
+        new AtualizarBancoSQL(p);
     }
 }

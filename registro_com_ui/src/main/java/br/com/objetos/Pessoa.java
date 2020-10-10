@@ -1,13 +1,17 @@
 package br.com.objetos;
 
-public class Pessoa {
+public final class Pessoa {
     private int id;
     private String nome;
     private String email;
     private String cidade;
     private int idade;
 
-    public Pessoa() {
+    private Pessoa() {
+    }
+
+    public static Pessoa createPessoa() {
+        return new Pessoa();
     }
 
     public int getId() {

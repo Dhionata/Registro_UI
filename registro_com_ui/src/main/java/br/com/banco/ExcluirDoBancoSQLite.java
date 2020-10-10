@@ -4,46 +4,49 @@ import br.com.ui.*;
 
 import javax.swing.*;
 import java.sql.*;
+import java.util.Objects;
 
-public class ExcluirDoBancoSQLite {
-    final ConexaoSQLite conexaoSQLite;
+public final class ExcluirDoBancoSQLite {
     PreparedStatement preparedStatement;
 
-    public ExcluirDoBancoSQLite(final String nome) {
-        this.conexaoSQLite = new ConexaoSQLite();
+    private ExcluirDoBancoSQLite(final String nome) {
+        ConexaoSQLite.conectar();
         final int pID = BuscaBancoSQLite.BuscaIDNoBancoSQLite(nome);
-        this.conexaoSQLite.conectar();
         final String sql = "delete from Pessoa where id = ?;";
         try {
-            (this.preparedStatement = this.conexaoSQLite.criarPreparedStatement(sql)).setInt(1, pID);
-            final int resultado = this.preparedStatement.executeUpdate();
+            (preparedStatement = Objects.requireNonNull(ConexaoSQLite.criarPreparedStatement(sql))).setInt(1, pID);
+            final int resultado = preparedStatement.executeUpdate();
             System.out.println("Resultado feito!");
             if (resultado == 1) {
-                JOptionPane.showMessageDialog(Ui.jPanel1, "Pessoa Deletada!");
+                JOptionPane.showMessageDialog(Ui.getjPanel1(), "Pessoa Deletada!");
             } else {
-                JOptionPane.showMessageDialog(Ui.jPanel1, "Pessoa Não Deletada!");
+                JOptionPane.showMessageDialog(Ui.getjPanel1(), "Pessoa Não Deletada!");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(Ui.jPanel1, "Erro ao Excluir!\n--Erro--\n" + e.getMessage());
-            if (this.preparedStatement != null) {
+            JOptionPane.showMessageDialog(Ui.getjPanel1(), "Erro ao Excluir!\n--Erro--\n" + e.getMessage());
+            if (preparedStatement != null) {
                 try {
-                    this.preparedStatement.close();
-                    this.conexaoSQLite.desconectar();
+                    preparedStatement.close();
+                    ConexaoSQLite.desconectar();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(Ui.jPanel1,
+                    JOptionPane.showMessageDialog(Ui.getjPanel1(),
                             "Erro ao fechar o PreparedStatement\n--Erro--\n" + ex.getMessage());
                 }
             }
         } finally {
-            if (this.preparedStatement != null) {
+            if (preparedStatement != null) {
                 try {
-                    this.preparedStatement.close();
-                    this.conexaoSQLite.desconectar();
+                    preparedStatement.close();
+                    ConexaoSQLite.desconectar();
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(Ui.jPanel1,
+                    JOptionPane.showMessageDialog(Ui.getjPanel1(),
                             "Erro ao fechar o PreparedStatement\n--Erro--\n" + ex.getMessage());
                 }
             }
         }
+    }
+
+    public static void createExcluirDoBancoSQLite(final String nome) {
+        new ExcluirDoBancoSQLite(nome);
     }
 }

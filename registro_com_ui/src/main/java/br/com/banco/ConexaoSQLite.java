@@ -5,53 +5,55 @@ import br.com.ui.*;
 import javax.swing.*;
 import java.sql.*;
 
-public class ConexaoSQLite {
-    private Connection conexao;
+import static java.lang.System.*;
 
-    public boolean conectar() {
-        System.out.println("Conectar sendo utilizado...");
+public class ConexaoSQLite {
+    private static Connection conexao;
+
+    public static boolean conectar() {
+        out.println("Conectar sendo utilizado...");
         try {
             final String url = "jdbc:sqlite:SQLite.db";
-            this.conexao = DriverManager.getConnection(url);
+            conexao = DriverManager.getConnection(url);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(Ui.jPanel1, "Erro ao Conectar\n--Erro--\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(Ui.getjPanel1(), "Erro ao Conectar\n--Erro--\n" + ex.getMessage());
             return false;
         }
-        System.out.println("Conectou!");
+        out.println("Conectou!");
         return true;
     }
 
-    public void desconectar() {
+    public static void desconectar() {
         try {
-            if (!this.conexao.isClosed()) {
-                this.conexao.close();
+            if (!conexao.isClosed()) {
+                conexao.close();
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(Ui.jPanel1, "Erro ao Desconectar\n--Erro--\n" + ex.getMessage());
+            JOptionPane.showMessageDialog(Ui.getjPanel1(), "Erro ao Desconectar\n--Erro--\n" + ex.getMessage());
         }
-        System.out.println("Desconectou!");
+        out.println("Desconectou!");
     }
 
-    public Statement criarStatement() {
+    public static Statement criarStatement() {
         try {
-            return this.conexao.createStatement();
+            return conexao.createStatement();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(Ui.jPanel1,
+            JOptionPane.showMessageDialog(Ui.getjPanel1(),
                     "Erro ao Criar Statement\n--Erro--\n" + ex.getMessage());
             return null;
         }
     }
 
-    public Connection getConexao() {
-        return this.conexao;
+    public static Connection getConexao() {
+        return conexao;
     }
 
-    public PreparedStatement criarPreparedStatement(final String sql) {
+    public static PreparedStatement criarPreparedStatement(final String sql) {
         try {
-            System.out.println("PreparedStatement\nSQL:\n" + sql);
-            return this.conexao.prepareStatement(sql);
+            out.println("PreparedStatement\nSQL:\n" + sql);
+            return conexao.prepareStatement(sql);
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(Ui.jPanel1,
+            JOptionPane.showMessageDialog(Ui.getjPanel1(),
                     "Erro ao Criar o PreparedStatement\n--Erro--\n" + ex.getMessage());
             return null;
         }
