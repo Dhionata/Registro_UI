@@ -32,7 +32,7 @@ import br.com.objetos.Pessoa;
 
 import static br.com.banco.BuscaBancoSQLite.*;
 
-public class Ui extends JFrame implements ActionListener {
+public final class Ui extends JFrame implements ActionListener {
     private static JPanel jPanel1;
     private JButton Botao_Editar;
     private JButton Botao_Excluir;
@@ -51,6 +51,7 @@ public class Ui extends JFrame implements ActionListener {
         getBotao_Editar().setEnabled(false);
         getBotao_Excluir().setEnabled(false);
 
+        //cria o "SQLite.db", o arquivo do Banco de Dados.
         Botao_Pesquisar.setEnabled(new File("SQLite.db").exists());
     }
 

@@ -1,15 +1,17 @@
 package br.com.banco;
 
-import br.com.objetos.*;
-import br.com.ui.*;
+import br.com.objetos.Pessoa;
+import br.com.ui.Ui;
 
 import javax.swing.*;
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
 
 import static br.com.banco.ConexaoSQLite.conectar;
 import static br.com.banco.ConexaoSQLite.criarPreparedStatement;
-import static java.lang.System.*;
+import static java.lang.System.out;
 
 public class BuscaBancoSQLite {
     private static ResultSet resultSet;
@@ -22,7 +24,8 @@ public class BuscaBancoSQLite {
         final String query = "select * from Pessoa where nome like ?;";
         out.println("Nome da pessoa: " + nome);
         try {
-            (pstmt = criarPreparedStatement(query)).setString(1,
+            pstmt = criarPreparedStatement(query);
+            pstmt.setString(1,
                     "%" + nome + "%");
             out.println("Passou pelo nome");
             resultSet = pstmt.executeQuery();
