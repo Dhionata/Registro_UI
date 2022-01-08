@@ -25,6 +25,7 @@ public class BuscaBancoSQLite {
         out.println("Nome da pessoa: " + nome);
         try {
             pstmt = criarPreparedStatement(query);
+            assert pstmt != null;
             pstmt.setString(1,
                     "%" + nome + "%");
             out.println("Passou pelo nome");

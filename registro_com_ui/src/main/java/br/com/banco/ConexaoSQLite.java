@@ -10,17 +10,16 @@ import static java.lang.System.*;
 public class ConexaoSQLite {
     private static Connection conexao;
 
-    public static boolean conectar() {
+    public static void conectar() {
         out.println("Conectar sendo utilizado...");
         try {
             final String url = "jdbc:sqlite:SQLite.db";
             conexao = DriverManager.getConnection(url);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(Ui.getjPanel1(), "Erro ao Conectar\n--Erro--\n" + ex.getMessage());
-            return false;
+            return;
         }
         out.println("Conectou!");
-        return true;
     }
 
     public static void desconectar() {
@@ -42,10 +41,6 @@ public class ConexaoSQLite {
                     "Erro ao Criar Statement\n--Erro--\n" + ex.getMessage());
             return null;
         }
-    }
-
-    public static Connection getConexao() {
-        return conexao;
     }
 
     public static PreparedStatement criarPreparedStatement(final String sql) {

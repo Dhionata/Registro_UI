@@ -8,10 +8,10 @@ import java.sql.*;
 
 public final class InserirPessoa {
 
-    private InserirPessoa(final Pessoa p) {
+    private static void inserirPessoa(final Pessoa p) {
         ConexaoSQLite.conectar();
         System.out.println("InserirPessoa sendo utilizada...");
-        final CriarTabela tabela = CriarTabela.createCriarTabela(ConexaoSQLite.getConexao());
+        final CriarTabela tabela = CriarTabela.createCriarTabela();
         tabela.criarTabelaPessoa();
         final String sqlInsert = "insert into Pessoa (nome,idade,'e-mail',cidade) values(?,?,?,?);";
         final PreparedStatement preparedStatement = ConexaoSQLite.criarPreparedStatement(sqlInsert);
@@ -44,6 +44,6 @@ public final class InserirPessoa {
     }
 
     public static void createInserirPessoa(final Pessoa p) {
-        new InserirPessoa(p);
+        inserirPessoa(p);
     }
 }

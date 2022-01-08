@@ -7,11 +7,11 @@ import java.sql.*;
 
 public class CriarTabela {
 
-    private CriarTabela(final Connection conexao) {
+    private CriarTabela() {
     }
 
-    public static CriarTabela createCriarTabela(final Connection conexao) {
-        return new CriarTabela(conexao);
+    public static CriarTabela createCriarTabela() {
+        return new CriarTabela();
     }
 
     public void criarTabelaPessoa() {

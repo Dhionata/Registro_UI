@@ -18,7 +18,8 @@ public final class AtualizarBancoSQL {
         out.println("AtuaizarBanco sendo usada...");
         final String sql = "update Pessoa set nome = ?, 'e-mail'= ?,cidade = ?,idade = ? where id = ?;";
         try {
-            (preparedStatement = ConexaoSQLite.criarPreparedStatement(sql)).setString(1, p.getNome());
+            preparedStatement = ConexaoSQLite.criarPreparedStatement(sql);
+            Objects.requireNonNull(preparedStatement).setString(1, p.getNome());
             preparedStatement.setString(2, p.getEmail());
             preparedStatement.setString(3, p.getCidade());
             preparedStatement.setInt(4, p.getIdade());
@@ -43,7 +44,7 @@ public final class AtualizarBancoSQL {
             }
         } finally {
             try {
-                preparedStatement.close();
+                Objects.requireNonNull(preparedStatement).close();
                 ConexaoSQLite.desconectar();
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(Ui.getjPanel1(), ex.getMessage());
