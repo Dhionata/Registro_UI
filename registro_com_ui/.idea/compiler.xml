@@ -9,8 +9,6 @@
         <module name="registro_com_ui" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="registro_com_ui" target="13" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="8" />
   </component>
 </project>
