@@ -1,10 +1,11 @@
 package br.com.banco;
 
-import br.com.objetos.*;
-import br.com.ui.*;
+import br.com.objetos.Pessoa;
+import br.com.ui.Ui;
 
 import javax.swing.*;
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 public final class InserirPessoa {
 

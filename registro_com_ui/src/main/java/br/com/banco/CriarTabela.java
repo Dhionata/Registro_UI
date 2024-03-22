@@ -1,9 +1,10 @@
 package br.com.banco;
 
-import br.com.ui.*;
+import br.com.ui.Ui;
 
 import javax.swing.*;
-import java.sql.*;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class CriarTabela {
 

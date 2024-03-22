@@ -1,9 +1,10 @@
 package br.com.banco;
 
-import br.com.ui.*;
+import br.com.ui.Ui;
 
 import javax.swing.*;
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public final class ExcluirDoBancoSQLite {

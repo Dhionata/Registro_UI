@@ -1,36 +1,20 @@
 package br.com.ui;
 
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.HeadlessException;
+import br.com.banco.AtualizarBancoSQL;
+import br.com.banco.ExcluirDoBancoSQLite;
+import br.com.banco.InserirPessoa;
+import br.com.objetos.Pessoa;
+
+import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.WindowConstants;
-import javax.swing.border.LineBorder;
-
-import br.com.banco.AtualizarBancoSQL;
-import br.com.banco.ExcluirDoBancoSQLite;
-import br.com.banco.InserirPessoa;
-import br.com.objetos.Pessoa;
-
-import static br.com.banco.BuscaBancoSQLite.*;
+import static br.com.banco.BuscaBancoSQLite.BuscaNoBancoSQLite;
 
 public final class Ui extends JFrame implements ActionListener {
     private static JPanel jPanel1;
@@ -48,6 +32,7 @@ public final class Ui extends JFrame implements ActionListener {
         initComponents();
         setLocationRelativeTo(null);
         getTexto_ID().setEditable(false);
+        getTexto_ID().setEnabled(false);
         getBotao_Editar().setEnabled(false);
         getBotao_Excluir().setEnabled(false);
 
@@ -57,23 +42,19 @@ public final class Ui extends JFrame implements ActionListener {
 
     public static void main(final String[] args) {
         try {
-            //JOptionPane.showMessageDialog(getjPanel1(), "UIManager vai ser iniciado.");
             UIManager.LookAndFeelInfo[] installedLookAndFeels;
-            for (int length = (installedLookAndFeels = UIManager
-                    .getInstalledLookAndFeels()).length, i = 0; i < length; ++i) {
+            for (int length = (installedLookAndFeels = UIManager.getInstalledLookAndFeels()).length, i = 0; i < length; ++i) {
                 UIManager.LookAndFeelInfo info = installedLookAndFeels[i];
                 if ("Windows".equals(info.getName())) {
-                    //JOptionPane.showMessageDialog(getjPanel1(), "entrou no if\n nome da classe");
                     UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException | UnsupportedLookAndFeelException | IllegalAccessException
-                | InstantiationException ex) {
+        } catch (ClassNotFoundException | UnsupportedLookAndFeelException | IllegalAccessException |
+                 InstantiationException ex) {
             Logger.getLogger(Ui.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(getjPanel1(), "Deu ruim na classe");
         }
-        //JOptionPane.showMessageDialog(getjPanel1(), "Passou por tudo, vai abrir ;D");
         EventQueue.invokeLater(() -> createUi().setVisible(true));
     }
 
@@ -121,12 +102,8 @@ public final class Ui extends JFrame implements ActionListener {
         jLabel1.setToolTipText("");
         GroupLayout jPanel1Layout = new GroupLayout(Ui.getjPanel1());
         Ui.getjPanel1().setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup().addGap(102, 102, 102).addComponent(jLabel1, -2, 171, -2)
-                        .addContainerGap(-1, 32767)));
-        jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup().addContainerGap().addComponent(jLabel1, -1, -1, 32767)
-                        .addContainerGap()));
+        jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel1Layout.createSequentialGroup().addGap(102, 102, 102).addComponent(jLabel1, -2, 171, -2).addContainerGap(-1, 32767)));
+        jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel1Layout.createSequentialGroup().addContainerGap().addComponent(jLabel1, -1, -1, 32767).addContainerGap()));
         jPanel6.setBorder(new LineBorder(new Color(0, 204, 255), 1, true));
         getBotao_Salvar().setBackground(new Color(0, 204, 255));
         getBotao_Salvar().setText("Salvar");
@@ -142,16 +119,9 @@ public final class Ui extends JFrame implements ActionListener {
         getBotao_Excluir().addActionListener(this);
         final GroupLayout jPanel5Layout = new GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addComponent(getBotao_Salvar()).addComponent(getBotao_Editar()).addComponent(this.getBotao_Pesquisar())
-                .addComponent(getBotao_Excluir()));
+        jPanel5Layout.setHorizontalGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(getBotao_Salvar()).addComponent(getBotao_Editar()).addComponent(this.getBotao_Pesquisar()).addComponent(getBotao_Excluir()));
         jPanel5Layout.linkSize(0, getBotao_Editar(), getBotao_Excluir(), this.getBotao_Pesquisar(), this.getBotao_Salvar());
-        jPanel5Layout.setVerticalGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel5Layout.createSequentialGroup().addGap(0, 0, 0)
-                        .addComponent(getBotao_Excluir(), -1, -1, 32767).addGap(18, 18, 18)
-                        .addComponent(getBotao_Pesquisar(), -1, -1, 32767).addGap(18, 18, 18)
-                        .addComponent(getBotao_Editar(), -1, -1, 32767).addGap(18, 18, 18)
-                        .addComponent(getBotao_Salvar(), -1, -1, 32767)));
+        jPanel5Layout.setVerticalGroup(jPanel5Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel5Layout.createSequentialGroup().addGap(0, 0, 0).addComponent(getBotao_Excluir(), -1, -1, 32767).addGap(18, 18, 18).addComponent(getBotao_Pesquisar(), -1, -1, 32767).addGap(18, 18, 18).addComponent(getBotao_Editar(), -1, -1, 32767).addGap(18, 18, 18).addComponent(getBotao_Salvar(), -1, -1, 32767)));
         jLabel6.setText("Nome");
         jLabel8.setText("ID");
         jLabel9.setText("Cidade");
@@ -174,55 +144,12 @@ public final class Ui extends JFrame implements ActionListener {
         getTexto_Idade().addActionListener(this);
         final GroupLayout jPanel6Layout = new GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel6Layout.createSequentialGroup().addContainerGap()
-                        .addGroup(jPanel6Layout
-                                .createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(jLabel6, -2, 45, -2)
-                                .addComponent(jLabel10, -2, 45, -2).addComponent(jLabel8, -2, 45, -2)
-                                .addComponent(jLabel9, -2, 45, -2).addComponent(jLabel11, -2, 45, -2))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                .addComponent(getTexto_ID(), -2, 40, -2)
-                                .addGroup(jPanel6Layout.createSequentialGroup()
-                                        .addGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                .addComponent(getTexto_Nome(), -2, 176, -2)
-                                                .addComponent(getTexto_Email(), -2, 176, -2)
-                                                .addComponent(getTexto_Cidade(), -2, 176, -2)
-                                                .addComponent(getTexto_Idade(), -2, 40, -2))
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED, -1, 32767)
-                                        .addComponent(jPanel5, -2, -1, -2)))
-                        .addContainerGap()));
-        jPanel6Layout.setVerticalGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel6Layout.createSequentialGroup().addGroup(jPanel6Layout
-                        .createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel6Layout.createSequentialGroup().addGap(52, 52, 52).addComponent(jPanel5, -2, -1,
-                                -2))
-                        .addGroup(GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel8, -2, 22, -2).addComponent(this.getTexto_ID(), -2, -1, -2))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel6, -2, 22, -2).addComponent(this.getTexto_Nome(), -2, -1, -2))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel10, -2, 22, -2).addComponent(this.getTexto_Email(), -2, -1, -2))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel9, -2, 22, -2).addComponent(this.getTexto_Cidade(), -2, -1, -2))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel11, -2, 22, -2)
-                                        .addComponent(this.getTexto_Idade(), -2, -1, -2))))
-                        .addContainerGap(-1, 32767)));
+        jPanel6Layout.setHorizontalGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel6Layout.createSequentialGroup().addContainerGap().addGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(jLabel6, -2, 45, -2).addComponent(jLabel10, -2, 45, -2).addComponent(jLabel8, -2, 45, -2).addComponent(jLabel9, -2, 45, -2).addComponent(jLabel11, -2, 45, -2)).addGap(18, 18, 18).addGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(getTexto_ID(), -2, 40, -2).addGroup(jPanel6Layout.createSequentialGroup().addGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(getTexto_Nome(), -2, 176, -2).addComponent(getTexto_Email(), -2, 176, -2).addComponent(getTexto_Cidade(), -2, 176, -2).addComponent(getTexto_Idade(), -2, 40, -2)).addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED, -1, 32767).addComponent(jPanel5, -2, -1, -2))).addContainerGap()));
+        jPanel6Layout.setVerticalGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel6Layout.createSequentialGroup().addGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(jPanel6Layout.createSequentialGroup().addGap(52, 52, 52).addComponent(jPanel5, -2, -1, -2)).addGroup(GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup().addContainerGap().addGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(jLabel8, -2, 22, -2).addComponent(this.getTexto_ID(), -2, -1, -2)).addGap(18, 18, 18).addGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(jLabel6, -2, 22, -2).addComponent(this.getTexto_Nome(), -2, -1, -2)).addGap(18, 18, 18).addGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(jLabel10, -2, 22, -2).addComponent(this.getTexto_Email(), -2, -1, -2)).addGap(18, 18, 18).addGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(jLabel9, -2, 22, -2).addComponent(this.getTexto_Cidade(), -2, -1, -2)).addGap(18, 18, 18).addGroup(jPanel6Layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(jLabel11, -2, 22, -2).addComponent(this.getTexto_Idade(), -2, -1, -2)))).addContainerGap(-1, 32767)));
         final GroupLayout layout = new GroupLayout(this.getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addComponent(Ui.getjPanel1(), GroupLayout.Alignment.TRAILING, -1, -1, 32767)
-                .addGroup(layout.createSequentialGroup().addGap(0, 0, 0).addComponent(jPanel6, -2, -1, -2)));
-        layout.setVerticalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup()
-                        .addComponent(Ui.getjPanel1(), -2, -1, -2).addGap(0, 0, 0).addComponent(jPanel6, -1, -1, 32767)));
+        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addComponent(Ui.getjPanel1(), GroupLayout.Alignment.TRAILING, -1, -1, 32767).addGroup(layout.createSequentialGroup().addGap(0, 0, 0).addComponent(jPanel6, -2, -1, -2)));
+        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addComponent(Ui.getjPanel1(), -2, -1, -2).addGap(0, 0, 0).addComponent(jPanel6, -1, -1, 32767)));
         pack();
     }
 
@@ -255,8 +182,7 @@ public final class Ui extends JFrame implements ActionListener {
         try {
             System.out.println("Botão Atualizar Apertado");
 
-            if (!getTexto_ID().getText().trim().isEmpty() && !getTexto_Nome().getText().trim().isEmpty()
-                    && !getTexto_Email().getText().trim().isEmpty()) {
+            if (!getTexto_ID().getText().trim().isEmpty() && !getTexto_Nome().getText().trim().isEmpty() && !getTexto_Email().getText().trim().isEmpty()) {
                 Pessoa p = Pessoa.createPessoa();
                 p.setId(Integer.parseInt(getTexto_ID().getText()));
                 p.setNome(getTexto_Nome().getText().trim());
@@ -276,8 +202,7 @@ public final class Ui extends JFrame implements ActionListener {
                 }
                 if (getTexto_Email().getText().trim().isEmpty()) {
                     System.out.println("Precisa de um e-mail...");
-                    JOptionPane.showMessageDialog(getjPanel1(),
-                            "Precisamos do e-mail para contato, e ele deve ser único...");
+                    JOptionPane.showMessageDialog(getjPanel1(), "Precisamos do e-mail para contato, e ele deve ser único...");
                 }
             }
         } catch (NumberFormatException e) {
@@ -312,8 +237,7 @@ public final class Ui extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(getjPanel1(), "Cara... vc tem que preencher o nome pra pesquisar...");
             }
         } catch (HeadlessException e) {
-            JOptionPane.showMessageDialog(getjPanel1(),
-                    "Problema no botão pesquisar, me reporte por favor...\n--Erro--\n" + e.getMessage());
+            JOptionPane.showMessageDialog(getjPanel1(), "Problema no botão pesquisar, me reporte por favor...\n--Erro--\n" + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -321,8 +245,7 @@ public final class Ui extends JFrame implements ActionListener {
     private void Botao_ExcluirActionPerformed() {
         try {
             System.out.println("Botão Excluir Apertado");
-            int del = JOptionPane.showConfirmDialog(getjPanel1(), "Você tem certeza que quer excluir?", "Deletar",
-                    JOptionPane.YES_NO_OPTION);
+            int del = JOptionPane.showConfirmDialog(getjPanel1(), "Você tem certeza que quer excluir?", "Deletar", JOptionPane.YES_NO_OPTION);
             if (del == 0) {
                 ExcluirDoBancoSQLite.createExcluirDoBancoSQLite(getTexto_Nome().getText());
                 limparTextos();
@@ -331,8 +254,7 @@ public final class Ui extends JFrame implements ActionListener {
                 System.out.println("Exclusão não efetuada, botão Cancelar apertado");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(getjPanel1(),
-                    "Então... o botão excluir tá com algum problema, me reporte.\n--Erro--\n" + e.getMessage());
+            JOptionPane.showMessageDialog(getjPanel1(), "Então... o botão excluir tá com algum problema, me reporte.\n--Erro--\n" + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -340,8 +262,7 @@ public final class Ui extends JFrame implements ActionListener {
     private void Botao_SalvarActionPerformed() {
         try {
             System.out.println("Botão Salvar Apertado");
-            if (!getTexto_Nome().getText().trim().isEmpty() && !getTexto_Idade().getText().trim().isEmpty()
-                    && !getTexto_Email().getText().trim().isEmpty() && !getTexto_Cidade().getText().trim().isEmpty()) {
+            if (!getTexto_Nome().getText().trim().isEmpty() && !getTexto_Idade().getText().trim().isEmpty() && !getTexto_Email().getText().trim().isEmpty() && !getTexto_Cidade().getText().trim().isEmpty()) {
                 Pessoa p = Pessoa.createPessoa();
                 p.setNome(getTexto_Nome().getText().trim());
                 p.setCidade(getTexto_Cidade().getText().trim());
@@ -361,8 +282,7 @@ public final class Ui extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(getjPanel1(), "Olha... vc tem que ter preencher tudo pra salvar...");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(getjPanel1(),
-                    "Desculpe, Salvar não está funcionando... corretamente...\n--Erro--" + e.getMessage());
+            JOptionPane.showMessageDialog(getjPanel1(), "Desculpe, Salvar não está funcionando... corretamente...\n--Erro--" + e.getMessage());
             e.printStackTrace();
         }
     }

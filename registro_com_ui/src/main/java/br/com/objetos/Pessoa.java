@@ -2,10 +2,10 @@ package br.com.objetos;
 
 public final class Pessoa {
     private int id;
+    private int idade;
     private String nome;
     private String email;
     private String cidade;
-    private int idade;
 
     private Pessoa() {
     }

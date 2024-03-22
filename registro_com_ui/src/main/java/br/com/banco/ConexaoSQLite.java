@@ -1,11 +1,11 @@
 package br.com.banco;
 
-import br.com.ui.*;
+import br.com.ui.Ui;
 
 import javax.swing.*;
 import java.sql.*;
 
-import static java.lang.System.*;
+import static java.lang.System.out;
 
 public class ConexaoSQLite {
     private static Connection conexao;
